@@ -8,17 +8,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.6.0/math.js"></script>
     <style>
         :root {
-            --primary-color: #4a6fa5;
-            --secondary-color: #166088;
-            --accent-color: #4fc3f7;
-            --background-color: #f5f7fa;
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #ecf0f1;
             --card-color: #ffffff;
-            --text-color: #333333;
-            --border-color: #dddddd;
+            --text-color: #2c3e50;
+            --border-color: #bdc3c7;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--background-color);
@@ -33,57 +33,61 @@
         }
         
         header {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 20px 0;
+            padding: 30px 0;
             text-align: center;
             margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 0 0 10px 10px;
         }
         
         h1 {
             margin: 0;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
         }
         
         .tabs {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             flex-wrap: wrap;
+            gap: 10px;
         }
         
         .tab-btn {
-            padding: 12px 24px;
+            padding: 12px 25px;
             background-color: var(--card-color);
             border: none;
-            border-bottom: 3px solid transparent;
+            border-radius: 30px;
             cursor: pointer;
             font-size: 1rem;
             font-weight: 600;
-            color: var(--secondary-color);
+            color: var(--text-color);
             transition: all 0.3s ease;
-            margin: 0 5px;
-            border-radius: 5px 5px 0 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
         .tab-btn:hover {
-            background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
         
         .tab-btn.active {
-            border-bottom: 3px solid var(--accent-color);
-            background-color: var(--card-color);
-            color: var(--primary-color);
+            background-color: var(--secondary-color);
+            color: white;
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
         }
         
         .tab-content {
             display: none;
             background-color: var(--card-color);
             padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             margin-bottom: 30px;
+            border: 1px solid var(--border-color);
         }
         
         .tab-content.active {
@@ -99,51 +103,54 @@
         .input-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
+            gap: 25px;
+            margin-bottom: 30px;
         }
         
         .input-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: var(--secondary-color);
+            color: var(--primary-color);
         }
         
         input, select {
             width: 100%;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
             font-size: 1rem;
-            transition: border 0.3s;
+            transition: all 0.3s;
         }
         
         input:focus, select:focus {
             outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 2px rgba(79, 195, 247, 0.2);
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
         }
         
         button {
-            background-color: var(--primary-color);
+            background-color: var(--secondary-color);
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 4px;
+            padding: 12px 25px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 1rem;
             font-weight: 600;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
             margin-top: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
         button:hover {
-            background-color: var(--secondary-color);
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
         
         .simulation-container {
@@ -160,100 +167,132 @@
         }
         
         .animation-section {
-            background-color: #f9f9f9;
-            border-radius: 8px;
+            background-color: #f5f7fa;
+            border-radius: 10px;
             padding: 20px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
         }
         
         .animation-title {
             margin-top: 0;
-            color: var(--secondary-color);
-            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
         }
         
         .animation-box {
-            height: 100px;
+            height: 120px;
             border: 2px dashed var(--border-color);
-            border-radius: 4px;
+            border-radius: 8px;
             position: relative;
             margin: 20px 0;
             overflow: hidden;
-            background-color: #eef2f7;
+            background-color: #e8f4fc;
+            background-image: linear-gradient(to right, #e8f4fc 1px, transparent 1px);
+            background-size: 20px 100%;
         }
         
         .moving-object {
-            width: 30px;
+            width: 60px;
             height: 30px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
             position: absolute;
             left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            bottom: 10px;
             transition: left 0.1s linear;
+            background-image: url("auto.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        .road-mark {
+            position: absolute;
+            bottom: 20px;
+            height: 2px;
+            background-color: white;
+            width: 100%;
         }
         
         .controls {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 15px;
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
         }
         
         .time-display {
             font-weight: 600;
-            color: var(--secondary-color);
+            color: var(--primary-color);
+            font-size: 1.1rem;
         }
         
         .graph-section {
-            margin-top: 30px;
+            margin-top: 40px;
         }
         
         .graph-container {
             margin-bottom: 30px;
             background-color: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
         }
         
         .graph-title {
             margin-top: 0;
-            color: var(--secondary-color);
-            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-size: 1.2rem;
             margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
         }
         
         .equations-section {
-            background-color: #f5f9ff;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
-            border-left: 4px solid var(--accent-color);
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 40px;
+            border-left: 5px solid var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         
         .equations-title {
             margin-top: 0;
-            color: var(--secondary-color);
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
         }
         
         .equation {
             font-family: 'Courier New', Courier, monospace;
             background-color: white;
-            padding: 10px;
-            border-radius: 4px;
-            margin: 10px 0;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin: 12px 0;
             overflow-x: auto;
+            border-left: 3px solid var(--accent-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         
         .footer {
             text-align: center;
             margin-top: 50px;
             padding: 20px;
-            color: #666;
+            color: #7f8c8d;
             font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* Estilo para las gráficas */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
         }
     </style>
 </head>
@@ -296,6 +335,7 @@
                     <h3 class="animation-title">Animación del MRU</h3>
                     <div class="animation-box" id="mru-animation-box">
                         <div class="moving-object" id="mru-object"></div>
+                        <div class="road-mark"></div>
                     </div>
                     <div class="controls">
                         <div class="time-display">Tiempo: <span id="mru-current-time">0</span>s</div>
@@ -309,17 +349,23 @@
                 
                 <div class="graph-container">
                     <h3 class="graph-title">Posición vs Tiempo</h3>
-                    <canvas id="mru-pos-chart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="mru-pos-chart"></canvas>
+                    </div>
                 </div>
                 
                 <div class="graph-container">
                     <h3 class="graph-title">Velocidad vs Tiempo</h3>
-                    <canvas id="mru-vel-chart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="mru-vel-chart"></canvas>
+                    </div>
                 </div>
                 
                 <div class="graph-container">
                     <h3 class="graph-title">Aceleración vs Tiempo</h3>
-                    <canvas id="mru-acc-chart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="mru-acc-chart"></canvas>
+                    </div>
                 </div>
             </div>
             
@@ -360,6 +406,7 @@
                     <h3 class="animation-title">Animación del MRUV</h3>
                     <div class="animation-box" id="mruv-animation-box">
                         <div class="moving-object" id="mruv-object"></div>
+                        <div class="road-mark"></div>
                     </div>
                     <div class="controls">
                         <div class="time-display">Tiempo: <span id="mruv-current-time">0</span>s</div>
@@ -373,17 +420,23 @@
                 
                 <div class="graph-container">
                     <h3 class="graph-title">Posición vs Tiempo</h3>
-                    <canvas id="mruv-pos-chart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="mruv-pos-chart"></canvas>
+                    </div>
                 </div>
                 
                 <div class="graph-container">
                     <h3 class="graph-title">Velocidad vs Tiempo</h3>
-                    <canvas id="mruv-vel-chart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="mruv-vel-chart"></canvas>
+                    </div>
                 </div>
                 
                 <div class="graph-container">
                     <h3 class="graph-title">Aceleración vs Tiempo</h3>
-                    <canvas id="mruv-acc-chart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="mruv-acc-chart"></canvas>
+                    </div>
                 </div>
             </div>
             
@@ -430,6 +483,7 @@
                     <h3 class="animation-title">Animación del Movimiento Variado</h3>
                     <div class="animation-box" id="varied-animation-box">
                         <div class="moving-object" id="varied-object"></div>
+                        <div class="road-mark"></div>
                     </div>
                     <div class="controls">
                         <div class="time-display">Tiempo: <span id="varied-current-time">0</span>s</div>
@@ -443,17 +497,23 @@
                 
                 <div class="graph-container">
                     <h3 class="graph-title">Posición vs Tiempo</h3>
-                    <canvas id="varied-pos-chart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="varied-pos-chart"></canvas>
+                    </div>
                 </div>
                 
                 <div class="graph-container">
                     <h3 class="graph-title">Velocidad vs Tiempo</h3>
-                    <canvas id="varied-vel-chart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="varied-vel-chart"></canvas>
+                    </div>
                 </div>
                 
                 <div class="graph-container">
                     <h3 class="graph-title">Aceleración vs Tiempo</h3>
-                    <canvas id="varied-acc-chart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="varied-acc-chart"></canvas>
+                    </div>
                 </div>
             </div>
             
@@ -868,11 +928,12 @@
                     datasets: [{
                         label: yLabel,
                         data: data,
-                        borderColor: '#4a6fa5',
-                        backgroundColor: 'rgba(74, 111, 165, 0.1)',
-                        borderWidth: 2,
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        borderWidth: 3,
                         pointRadius: 0,
-                        fill: true
+                        fill: true,
+                        tension: 0.1
                     }]
                 },
                 options: {
@@ -883,11 +944,20 @@
                             display: true,
                             text: title,
                             font: {
-                                size: 14
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            padding: {
+                                top: 10,
+                                bottom: 20
                             }
                         },
                         legend: {
                             display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
                         }
                     },
                     scales: {
@@ -896,11 +966,17 @@
                                 display: true,
                                 text: 'Tiempo (s)',
                                 font: {
-                                    weight: 'bold'
+                                    weight: 'bold',
+                                    size: 14
                                 }
                             },
                             grid: {
                                 color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                }
                             }
                         },
                         y: {
@@ -908,13 +984,26 @@
                                 display: true,
                                 text: yLabel,
                                 font: {
-                                    weight: 'bold'
+                                    weight: 'bold',
+                                    size: 14
                                 }
                             },
                             grid: {
                                 color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                }
                             }
                         }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'nearest'
+                    },
+                    animation: {
+                        duration: 1000
                     }
                 }
             });
